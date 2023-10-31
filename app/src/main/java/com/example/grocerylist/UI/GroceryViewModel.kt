@@ -6,15 +6,19 @@ import com.example.grocerylist.Database.GroceryRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class GroceryViewModel(private val repository: GroceryRepository):ViewModel() {
+class GroceryViewModel(private val repository: GroceryRepository) : ViewModel() {
 
-     fun insert(item:GroceryItems) = GlobalScope.launch {
+    // In coroutines thread insert item in insert function.
+    fun insert(item: GroceryItems) = GlobalScope.launch {
         repository.insert(item)
     }
+
+    // In coroutines thread delete item in delete function.
     fun delete(item: GroceryItems) = GlobalScope.launch {
         repository.delete(item)
     }
-    fun allGroceryItems() = repository.allGroceryItems()
 
+    //Here we initialized allGroceryItems function with repository
+    fun allGroceryItems() = repository.allGroceryItems()
 
 }
